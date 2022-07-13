@@ -1,0 +1,48 @@
+import { useEffect, useState } from "react";
+import { Message } from "./Message";
+
+export const SimpleForm = () => {
+  const [formState, setFormState] = useState({
+    username: "Samuel",
+    email: "guhs990520@gs.utm.mx",
+  });
+
+  const { username, email } = formState;
+
+  const onInputChange = ({ target }) => {
+    const { name, value } = target;
+    //console.log({ name, value });
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  return (
+    <>
+      <h1>Formulario Simple</h1>
+      <hr />
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Username"
+        name="username"
+        value={username}
+        onChange={onInputChange}
+      />
+
+      <input
+        type="email"
+        className="form-control mt-2"
+        placeholder="guhs990520@gs.utm.mx"
+        name="email"
+        value={email}
+        onChange={onInputChange}
+      />
+
+      {
+        (username === "Samuel") && (<Message/>)
+      }
+    </>
+  );
+};
